@@ -27,3 +27,8 @@ X_test = X_test.reshape(10000,3072) #10, 000 images for testing
 X_train = (X_train - np.mean(X_train))/np.std(X_train)
 X_test = (X_test - np.mean(X_test))/np.std(X_test)
 
+#convert class vectors to binary class matrices (i.e one hot vectors)
+labels = 10
+Y_train = np_utils.to_categorical(y_train,labels)
+Y_test = np_utils.to_categorical(y_test,labels)
+
