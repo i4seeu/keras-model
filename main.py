@@ -47,3 +47,23 @@ model.add(Activation('sigmoid'))
 #compile the model
 adam = adam(0.01) #optimizer with a learning rate
 model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=["accuracy"])
+#fitting the model
+model.fit(X_train,Y_train,batch_size=1000, epochs=10, validation_data=(X_test,Y_test))
+
+#evaluating your model
+score = model.evaluate(X_test, Y_test, verbose=0)
+print("Test Accuracy: ",score[1])
+
+#make predictions
+model.predict_classes(X_test)
+
+#save the model
+model.save('model.h5')
+jsonModel = model.to_json()
+model.save_weights('modelWeight.h5')
+
+#printing out the summary
+model.summary()
+
+#loading the weights
+modelWt = model.load_weights('modelWeight.h5')
