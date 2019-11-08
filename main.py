@@ -32,3 +32,18 @@ labels = 10
 Y_train = np_utils.to_categorical(y_train,labels)
 Y_test = np_utils.to_categorical(y_test,labels)
 
+#define the model
+
+model = Sequential()
+model.add(Dense(512, input_shape=(3072,))) # 3*32*32 = 3072
+model.add(Activation('relu'))
+model.add(Dropout(0.4)) #regularization
+model.add(Dense(120))
+model.add(Activation('relu'))
+model.add(Dropout(0.2)) #regularization
+model.add(Dense(labels)) #Last layer with 10 outputs , each output per class
+model.add(Activation('sigmoid'))
+
+#compile the model
+adam = adam(0.01) #optimizer with a learning rate
+model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=["accuracy"])
