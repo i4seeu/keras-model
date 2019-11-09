@@ -42,6 +42,6 @@ model.fit(X_train, y_train, verbose=1, batch_size=1, epochs=10000)
 
 #Test  the model print the accuracy on the test data
 loss, accuracy = model.evaluate(X_test, y_test, verbose=0)
-print("\nAccuracy using keras prediction {:.2f}".format(accuracy))
+print("\nAccuracy using keras prediction {:.2f}".format(accuracy*100), '%')
 
 
